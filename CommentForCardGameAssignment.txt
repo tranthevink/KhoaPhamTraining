@@ -1,0 +1,30 @@
+- Tổng của 2 thẻ đầu không được vượt quá 7 (<= 7).
+- Giá trị của thẻ thứ 3 được suy ra từ 2 thẻ đầu (= 7 - totalOf2PreviousCard).
+
+
+- Kiểu trả về của function choosingCard không cần là 1 array [random, cardRandom, arrayCard], chỉ nên trả về cardRandom là đủ vì:
+	+) Trong code không dùng tới random của [random, cardRandom, arrayCard]
+	+) Trả về biến arrayCard trong [random, cardRandom, arrayCard] không cần thiết vì có thể dùng thẳng array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
+- function chooseElement là không cần thiết vì Value truyền vào và giá trị trả ra của chooseElement chắc chắn giống nhau, có thể lấy thẳng Value để add vào array player.
+				var lastcard = chooseElement(memory[2], result[2]);
+                inputintoArray(lastcard, player);
+			nên chuyển thành 
+				inputintoArray(memory[2], player)
+
+- Chú ý tên biến, tên hàm cần tuân thủ quy tắc camel, tên biến và tên hàm nên bắt đầu bằng ký tự viết thường chứ không phải chữ hoa
+	+) inputintoArray(Element, Array) > inputIntoArray(element, array) 
+	+) thirdcardvalue > thirdCardValue
+	+) twocardsvalue > twoCardsValue
+- Đoạn code random 2 card đầu tiên:
+	+) if (result[1] == "J" || result[1] == "Q" || result[1] == "K")  và if (result[1] <= 7) có thể gộp chung thành 1 logic thay vì lặp lại ở 2 logic khác nhau.
+	có thể chuyển thành if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
+	+) if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
+	   if (result[1] > 7)
+	   nên được viết thành 
+	   if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
+	   else if (result[1] > 7)
+	   để tăng hiệu suất chương trình (chương trình không check logic thứ 2 nếu đã nhảy vào logic thứ nhất) và code dễ đọc hơn.
+- Nếu thirdcardvalue != 0 thì thêm card cuối cùng = thirdcardvalue vào array player luôn và kết thúc chương trình, không cần thiết chạy vào dòng code inputintoArray(lastcard, player); (line 59)
+
+- Dòng code inputintoArray(0, memory); (line 50) bị thừa
+	

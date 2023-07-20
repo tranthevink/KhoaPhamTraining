@@ -1,7 +1,6 @@
 {
   "name": "session1",
   "version": "1.0.0",
-  "description": "",
   "main": "ex-01.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tranthevink/KhoaPhamTraining.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tranthevink/KhoaPhamTraining/issues"
+  },
+  "homepage": "https://github.com/tranthevink/KhoaPhamTraining#readme",
+  "description": ""
 }
