@@ -1,7 +1,8 @@
+Yêu cầu bài toán:
 - Tổng của 2 thẻ đầu không được vượt quá 7 (<= 7).
 - Giá trị của thẻ thứ 3 được suy ra từ 2 thẻ đầu (= 7 - totalOf2PreviousCard).
 
-
+Comment for code:
 - Kiểu trả về của function choosingCard không cần là 1 array [random, cardRandom, arrayCard], chỉ nên trả về cardRandom là đủ vì:
 	+) Trong code không dùng tới random của [random, cardRandom, arrayCard]
 	+) Trả về biến arrayCard trong [random, cardRandom, arrayCard] không cần thiết vì có thể dùng thẳng array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
