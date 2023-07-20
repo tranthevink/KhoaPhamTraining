@@ -25,7 +25,7 @@ Comment for code:
 	   if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
 	   else if (result[1] > 7)
 	   để tăng hiệu suất chương trình (chương trình không check logic thứ 2 nếu đã nhảy vào logic thứ nhất) và code dễ đọc hơn.
-- Nếu thirdcardvalue != 0 thì thêm card cuối cùng = thirdcardvalue vào array player luôn và kết thúc chương trình, không cần thiết chạy vào dòng code inputintoArray(lastcard, player); (line 59)
+- Nếu thirdcardvalue != 0 thì thêm card cuối cùng = thirdcardvalue vào array player luôn và kết thúc chương trình, không cần thiết chạy vào dòng code inputintoArray(lastcard, player); (line 61)
 
-- Dòng code inputintoArray(0, memory); (line 50) bị thừa
+- Dòng code inputintoArray(0, memory); (line 51) bị thừa
 	
