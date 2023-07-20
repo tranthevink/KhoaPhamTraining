@@ -28,4 +28,6 @@ Comment for code:
 - Nếu thirdcardvalue != 0 thì thêm card cuối cùng = thirdcardvalue vào array player luôn và kết thúc chương trình, không cần thiết chạy vào dòng code inputintoArray(lastcard, player); (line 61)
 
 - Dòng code inputintoArray(0, memory); (line 51) bị thừa
+
+- Cân nhắc việc sử dụng thêm array memory, vì có thể lấy ra được giá trị của card thông qua array player 
 	
