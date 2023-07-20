@@ -1,0 +1,19 @@
+npm init -y > install package.json
+npm install bcryptjs > install bcryptjs
+npm install > tự động cài lại các thư viện đã list trong package.json
+npm init -y > create package.json
+
+git public key from local machine:
+cat ~/.ssh/id_rsa.pub
+go to account on github > setting > SSH and GPG keys > New SSH key 
+> paste the public key into the key session
+
+ctrl + C to out js program
+
+install Json Formatter to format json response from server on chrome
+
+https://expressjs.com/  > 
+
+
+
+
