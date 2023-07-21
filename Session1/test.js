@@ -2,37 +2,37 @@
 
 var array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"]
 var player = [];
-var memory = [];
 var count = 0;
 
 function removeElement(a, element) {
-    ////console.log(`Start remove ${element} in ${a} ...`);
+    //console.log(`Start remove ${element} in ${a} ...`);
     var index = a.indexOf(element);
     if (index > -1) {
         a.splice(index, 1);
     }
-    // //console.log(`-- Remove ${element} in ${a} successfully.`);
-}
-
-function chooseElement(Value, Array) {
-    ////console.log(`Start choose the ${Value} from ${Array}`);
-    Elementresult = Array.find((element) => element === Value)
-        // //console.log(`-- Found the ${Value} from ${Array}`);
-    return Elementresult;
+    //console.log(`-- Remove ${element} in ${a} successfully.`);
 }
 
 function choosingCard(arrayCard) {
     // Using Math.floor(Math.random() *  Number) function to get randomly element in this array
-    ////console.log(`Starting choose card from ${arrayCard}`);
+    //console.log(`Starting choose card from ${arrayCard}`);
     var random = Math.floor(Math.random() * arrayCard.length);
     var cardRandom = arrayCard[random];
-    ////console.log(`With ${random} position, the value is ${arrayCard[random]}`);
+    //console.log(`With ${random} position, the value is ${arrayCard[random]}`);
     removeElement(arrayCard, arrayCard[random]);
-    ////console.log(`-- Choosing the card ${cardRandom} successfully.`);
-    return [random, cardRandom, arrayCard];
+    //console.log(`-- Choosing the card ${cardRandom} successfully.`);
+    return cardRandom;
 }
 
-function inputintoArray(Element, Array) {
+function getValueFromCard(card) {
+    if (!isNaN(card))
+        return card;
+    else
+        return 0;
+}
+
+
+function inputIntoArray(Element, Array) {
     //console.log(`Start input ${Element} into ${Array}`);
     Array.push(Element);
     //console.log(`-- Inputed ${Element} into the array ${Array} successfully.`);
@@ -42,79 +42,49 @@ function inputintoArray(Element, Array) {
 
 try {
     for (var i = 1; i <= 13; i++) {
-        if (count == 2) {
+        //get the last card
+        if (count === 2) {
             result = choosingCard(array);
-            inputintoArray(i, result);
-            if (memory[2] == 0) {
-                if (result[1] == "J" || result[1] == "Q" || result[1] == "K") {
-                    inputintoArray(0, memory);
-                    inputintoArray(result[1], player);
-                    //console.log(`The player has third card with ${result[1]} value.`);
-                    //console.log(`The player have three cards: ${player}`);
-                    //console.log(`In order to choose three cards with total equal to 7. The server had worked ${result[3]} times.`);
-                    i = 13;
-                }
-            } else {
-                var lastcard = chooseElement(memory[2], result[2]);
-                inputintoArray(lastcard, player);
-                //console.log(`The player has third card with ${lastcard} value.`);
-                //console.log(`The player has three cards: ${player}.`);
+            //this case was resolved
+            if (result === "J" || result === "Q" || result === "K") {
+                inputIntoArray(result, player);
+                //console.log(`The player has third card with ${result[1]} value.`);
+                //console.log(`The player have three cards: ${player}`);
                 //console.log(`In order to choose three cards with total equal to 7. The server had worked ${result[3]} times.`);
-                i = 13;
+                break;
             }
-        }
-        if (count < 2) {
+        } else if (count < 2) {
             result = choosingCard(array);
-            inputintoArray(i, result);
-            if (result[1] == "J" || result[1] == "Q" || result[1] == "K") {
-                if (count == 1) {
-                    inputintoArray(0, memory);
-                    inputintoArray(result[1], player);
-                    //console.log(`The player has second card ${result[1]} value.`);
-                    //console.log(`The value of previous two cards: ${memory[0]} and ${memory[1]}.`);
-                    var twocardsvalue = memory[0] + memory[1];
-                    var thirdcardvalue = 7 - twocardsvalue;
-                    if (thirdcardvalue >= 0) {
-                        //console.log(`The value of thirdcard must be: ${thirdcardvalue}.`);
-                        inputintoArray(thirdcardvalue, memory);
-                        count = count + 1;
-                    }
-                }
-                if (count == 0) {
-                    count = count + 1;
-                    inputintoArray(0, memory);
-                    inputintoArray(result[1], player);
-                    //console.log(`The player has first card ${result[1]} value.`);
-                }
-            }
-            if (result[1] <= 7) {
-                if (count == 1) {
+            if (result === "J" || result === "Q" || result === "K" || result <= 7) {
+                //get the second card
+                if (count === 1) {
                     //console.log(`The value of previous two cards: ${memory[0]} and ${result[1]}.`);
-                    var twocardsvalue = memory[0] + result[1];
+                    var twocardsvalue = getValueFromCard(player[0]) + getValueFromCard(result);
                     var thirdcardvalue = 7 - twocardsvalue;
                     if (thirdcardvalue >= 0) {
                         //console.log(`The value of thirdcard must be: ${thirdcardvalue}.`);
-                        inputintoArray(result[1], memory);
-                        inputintoArray(thirdcardvalue, memory);
-                        count = count + 1;
-                        inputintoArray(memory[1], player);
+                        count++;
+                        inputIntoArray(result, player);
+                        if (thirdcardvalue > 0 && array.indexOf(thirdcardvalue) > -1) {
+                            //if thirdcardvalue > 0, thirdcardvalue should be 1,2,3,4,5,6 so the third card should be 1,2,3,4,5,6
+                            inputIntoArray(thirdcardvalue, player);
+                            break;
+                        }
                         //console.log(`The player has second card with ${memory[1]} value.`);
                     } else {
                         //console.log(`The server will choose again.`);
                     }
-                }
-                if (count == 0) {
-                    inputintoArray(result[1], memory);
-                    count = count + 1;
-                    inputintoArray(memory[0], player);
+                } else if (count === 0) { //get the first card
+                    count++;
+                    inputIntoArray(result, player);
                     //console.log(`The player has first card with ${memory[0]} value.`);
                 }
-            }
-            if (result[1] > 7) {
+            } else if (result > 7) {
                 //console.log(`The value of card ${result[1]} greater than 7. Server will choose again!!!`);
             }
         }
     }
+    console.log(player);
 } catch (errorMain) {
     //console.log(`Found the errors in this Script: ${errorMain}`);
 }
