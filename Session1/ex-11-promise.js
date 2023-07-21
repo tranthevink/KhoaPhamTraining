@@ -6,9 +6,9 @@ var arrayJob = [
     { job: "Reading", duration: 2 }
 ]
 
-browseArray(0);
+recursiveBrowseArray(0);
 
-function browseArray(startIndex) {
+function recursiveBrowseArray(startIndex) {
     return new Promise(resolveLevel1 => {
         if (startIndex > arrayJob.length - 1)
             resolveLevel1();
@@ -16,7 +16,7 @@ function browseArray(startIndex) {
             new Promise(resolveLevel2 => {
                 resolveLevel2(recursiveCounting(arrayJob[startIndex].duration, 0, arrayJob[startIndex].job));
             }).then(() => {
-                resolveLevel1(browseArray(startIndex + 1));
+                resolveLevel1(recursiveBrowseArray(startIndex + 1));
             });
         }
     });
