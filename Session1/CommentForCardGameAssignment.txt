@@ -16,7 +16,7 @@ Comment for code:
 	+) inputintoArray(Element, Array) > inputIntoArray(element, array) 
 	+) thirdcardvalue > thirdCardValue
 	+) twocardsvalue > twoCardsValue
-- Đoạn code random 2 card đầu tiên:
+- Đoạn code random 2 cards đầu tiên:
 	+) if (result[1] == "J" || result[1] == "Q" || result[1] == "K")  và if (result[1] <= 7) có thể gộp chung thành 1 logic thay vì lặp lại ở 2 logic khác nhau.
 	có thể chuyển thành if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
 	+) if (result[1] == "J" || result[1] == "Q" || result[1] == "K" || result[1] <= 7) 
