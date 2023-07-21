@@ -31,7 +31,7 @@ function recursiveCounting(max, start, action) {
                 resolve(recursiveCounting(max, start + 1, action));
             }, 1000);
         } else {
-            resolve();
+            resolve({ working: "done" });
         }
 
     });

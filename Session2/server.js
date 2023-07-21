@@ -3,8 +3,8 @@ var app = express();
 app.listen(3000);
 
 app.get("/", function(req, res) {
-    res.send("Hello");
-});
+    1res.send("Hello");
+});1
 
 app.get("/register", function(req, res) {
     // res.send({ page: "register", status: "success" });
