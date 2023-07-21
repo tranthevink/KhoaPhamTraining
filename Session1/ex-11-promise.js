@@ -11,7 +11,7 @@ recursiveBrowseArray(0);
 function recursiveBrowseArray(startIndex) {
     return new Promise(resolveLevel1 => {
         if (startIndex > arrayJob.length - 1)
-            resolveLevel1();
+            resolveLevel1({ browsing: "reached last element" });
         else {
             new Promise(resolveLevel2 => {
                 resolveLevel2(recursiveCounting(arrayJob[startIndex].duration, 0, arrayJob[startIndex].job));
@@ -31,7 +31,7 @@ function recursiveCounting(max, start, action) {
                 resolve(recursiveCounting(max, start + 1, action));
             }, 1000);
         } else {
-            resolve({ working: "done" });
+            resolve({ counting: "reached last element" });
         }
 
     });
