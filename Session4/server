@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", function(req, res) {
     res.send("Main server (3000)")
 });
-
-countingChecker();
+myTest();
+// countingChecker();
 
 function countingChecker() {
     setTimeout(() => {
@@ -37,3 +37,11 @@ app.post("/receiveChildServer", function(req, res) {
     firstServerCounting = 0;
     res.json({ result: 1, message: "Reply from server is okay." });
 })
+
+function myTest() {
+    setTimeout(() => {
+        maxTime++;
+        console.log(maxTime);
+        myTest();
+    }, 0.5);
+}

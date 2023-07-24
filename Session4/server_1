@@ -28,3 +28,5 @@ function sendRequestToMainServer() {
         sendRequestToMainServer();
     }, 3000);
 }
+//when server is crashed, how server_1 deal with the situation
+//axios.SetTimeout
