@@ -18,7 +18,7 @@ app.get("/", function(req, res) {
 sendRequestToMainServer();
 
 function sendRequestToMainServer() {
-    axios.post("http://localhost:3000/receiveChildServer")
+    axios.post('http://localhost:3000/receiveChildServer')
         .then(function(res) {
             console.log(res.data);
         }).catch(function(err) {
