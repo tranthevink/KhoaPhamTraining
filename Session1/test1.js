@@ -1,8 +1,6 @@
-function test(var1, var2 = 2, var3) {
-    console.log(var1);
-    console.log(var2);
-    console.log(var3);
+var http = require('http');
 
-}
-
-test(1, 3);
+http.createServer(function(req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('Hello World!');
+}).listen(8080);

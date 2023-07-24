@@ -71,3 +71,9 @@ app.get("/register/:un/:pw", function(req, res) {
     console.log(username);
     res.json({ username: username, password: password });
 })
+
+
+app.get("/currentStatus", function(req, res) {
+    // res.send({ page: "register", status: "success" });
+    res.json({ status: "working" });
+})
