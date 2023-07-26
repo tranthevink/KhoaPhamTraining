@@ -8,6 +8,14 @@ app.set("views", "./views");
 app.use(express.static("public"));
 app.listen(3000);
 
+app.get("/check", function(req, res) {
+    var myArray = ["theMoon.jpg", "theJupiter.jpg", "theSun.jpg"];
+    res.render("home3", {
+        arrImgs: myArray
+    });
+});
+
+
 app.get("/", function(req, res) {
     var myHoney = "Bill^^";
     res.render("home", {
@@ -18,13 +26,9 @@ app.get("/", function(req, res) {
 });
 
 app.get("/random", function(req, res) {
-    var myHoney = "Bill^^";
     var myArray = ["theMoon.jpg", "theJupiter.jpg", "theSun.jpg"];
     var randomIndex = Math.floor(Math.random() * (myArray.length));
-    res.render("home", {
-        hoten: myHoney,
-        number1: 10,
-        number2: 5,
+    res.render("home2", {
         picture: myArray[randomIndex]
     });
 });
