@@ -2,7 +2,7 @@ npm init -y > install package.json
 npm install bcryptjs > install bcryptjs
 npm install > tự động cài lại các thư viện đã list trong package.json (xóa dependencies trong package.json và npm install > tự động xóa thư viện không cần thiết)
 npm init -y > create package.json
-
+npm install express ejs body-parser
 
 
 

@@ -22,3 +22,4 @@ app.post("/total", function(req, res) {
         res.json({ result: 1, message: "Ok", total: total });
     }
 });
+
