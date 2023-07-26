@@ -1,7 +1,7 @@
 var firstServer = false;
 var firstServerCounting = 0;
 var maxTime = 5;
-var express = require("express");
+var express = require('express');
 var bodyParser = require('body-parser');
 
 
@@ -31,7 +31,7 @@ function countingChecker() {
         countingChecker();
     }, 1000);
 }
-app.post("/receiveChildServer", function(req, res) {
+app.post('/receiveChildServer', function(req, res) {
     console.log("Receive signal from child server");
     firstServer = true;
     firstServerCounting = 0;
