@@ -1,0 +1,44 @@
+#wrapper {
+    width: 80%;
+    min-height: 500px;
+    margin: auto;
+    background-color: red;
+}
+
+#banner {
+    width: 100%;
+    min-height: 200px;
+    margin: auto;
+    background-color: blue;
+}
+
+#menu {
+    width: 100%;
+    min-height: 50px;
+    margin: auto;
+    background-color: green;
+}
+
+#menu a {
+    color: yellow;
+    text-decoration: none;
+    width: 15%;
+    display: block;
+    float: left;
+    border: solid 1px white;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#menu a:hover {
+    background-color: blue;
+    counter-reset: white;
+}
+
+#main {
+    width: 100%;
+    min-height: 200px;
+    margin: auto;
+    background-color: yellow;
+}

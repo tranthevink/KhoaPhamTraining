@@ -32,3 +32,27 @@ app.get("/random", function(req, res) {
         picture: myArray[randomIndex]
     });
 });
+app.get("/randomCards", function(req, res) {
+    var cardsArray = randomCards();
+    console.log(cardsArray.length);
+    res.render("home3", {
+        arrImgs: cardsArray
+    });
+});
+
+function randomCards() {
+    var cardsArray = [];
+    var typesArray = ["a", "b", "c", "d"];
+    var tempRandomNumbers = [];
+    var tempTypes = [];
+
+    while (cardsArray.length !== 52) {
+        var randomNumber = Math.floor(Math.random() * 13) + 1;
+        var randomType = Math.floor(Math.random() * 4);
+        var cardPicture = randomNumber + typesArray[randomType] + ".png";
+        if (cardsArray.indexOf(cardPicture) === -1) {
+            cardsArray.push(cardPicture);
+        }
+    }
+    return cardsArray;
+}

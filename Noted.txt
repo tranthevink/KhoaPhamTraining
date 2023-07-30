@@ -23,3 +23,18 @@ https://www.mongodb.com/docs/compass/master/install/
 
 
 
+arrProducts=[
+	{name:"iPhone 12 Pro", price:16000000, img:"ip12.png"},
+	{name:"iPhone 13", price:20000000, img:"ip12.png"},
+	{name:"iPhone 14", price:3000000000000, img:"ip12.png"}
+]
+
+views/details.ejs
+Name
+Picture
+Price
+
+products
+
+
+

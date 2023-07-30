@@ -8,11 +8,15 @@
 </head>
 
 <body>
+    <div>
+        <a href="/randomCards">Random</a>
+    </div>
     <% for(var i = 0; i<arrImgs.length;i++){ %>
-        <% if(i%2 === 0) { %>
-            <img src="./<%- arrImgs[i]%>">
-            <% } %>
-                <% } %>
+        <div style="width: 50px;height: 150px;float: left;">
+            <img src="./cards/<%- arrImgs[i]%>">
+        </div>
+        <% } %>
+
 </body>
 
 </html>
