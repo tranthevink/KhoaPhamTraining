@@ -21,20 +21,18 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/products", (req, res) => {
-    arrProducts = [
-        { name: "iPhone 12 Pro", price: 16000000, img: "theJupiter.jpg" },
-        { name: "iPhone 13", price: 20000000, img: "theMoon.jpg" },
-        // { name: "iPhone 14", price: 3000000000000, img: "theSun.jpg" }
+    listProducts = [
+        { name: "iPhone 12 Pro", price: 16000000, img: "./iphones/12Pro.jpg" },
+        { name: "iPhone 13", price: 20000000, img: "./iphones/13.jpg" }
     ]
-    page = "products";
-    res.render("master");
+    res.render("master", { page: "products", arrProducts: listProducts });
 });
 
 app.get("/productDetail/:name", (req, res) => {
-    arrProducts = [
-        { name: "iPhone 12 Pro", price: 16000000, img: "theJupiter.jpg" },
-        { name: "iPhone 13", price: 20000000, img: "theMoon.jpg" },
-        { name: "iPhone 14", price: 3000000000000, img: "theSun.jpg" }
+    listProducts = [
+        { name: "iPhone 12 Pro", price: 16000000, img: "../iphones/12Pro.jpg" },
+        { name: "iPhone 13", price: 20000000, img: "../iphones/13.jpg" }
     ]
-    res.render("master", { page: "productDetail", product });
+    product = listProducts.find(x => x.name === req.params.name);
+    res.render("master", { page: "productDetail", product: product });
 });
