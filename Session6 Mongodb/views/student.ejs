@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table width="300" , border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>BirthYear</th>
+        </tr>
+
+        <!-- <% for(var i; i < students.length; i++) {%>
+            <tr>
+                <td>
+                    <%- students[i]._id %>
+                </td>
+                <td>
+                    <%- students[i].name %>
+                </td>
+                <td>
+                    <%- students[i].birthYear %>
+                </td>
+            </tr>
+            <% } %> -->
+        <% students.forEach((st) => { %>
+            <tr>
+                <td>
+                    <%- st._id %>
+                </td>
+                <td>
+                    <%- st.name %>
+                </td>
+                <td>
+                    <%- st.birthYear %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</body>
+
+</html>

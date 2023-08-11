@@ -21,6 +21,7 @@ app.get("/price/:pair", function(req, res) {
 });
 
 app.post("/server1/total", function(req, res) {
+    console.log(req);
     if (!req.body.no1 || !req.body.no2) {
         res.json({ result: 0, message: "Wrong parameters" })
     } else {

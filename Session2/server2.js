@@ -8,10 +8,12 @@ app.listen(3001);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+//parse json format into body object
 app.use(bodyParser.json());
 
 
 app.post("/total", function(req, res) {
+    console.log(req);
     if (!req.body.no1 || !req.body.no2) {
         res.json({ result: 0, message: "Wrong parameters" })
 
@@ -22,4 +24,3 @@ app.post("/total", function(req, res) {
         res.json({ result: 1, message: "Ok", total: total });
     }
 });
-

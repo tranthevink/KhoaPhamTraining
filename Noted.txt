@@ -2,7 +2,7 @@ npm init -y > install package.json
 npm install bcryptjs > install bcryptjs
 npm install > tự động cài lại các thư viện đã list trong package.json (xóa dependencies trong package.json và npm install > tự động xóa thư viện không cần thiết)
 npm init -y > create package.json
-npm install express ejs body-parser > cài đặt các thư viện được liệt kê (express,ejs,body-parser)
+npm install express ejs body-parser mongoose > cài đặt các thư viện được liệt kê (express,ejs,body-parser)
 
 
 
@@ -15,26 +15,26 @@ ctrl + C to out js program
 
 install Json Formatter to format json response from server on chrome
 
-https://expressjs.com/  >
+https://expressjs.com/  > framework js lập trình BE
 
+threejs.org > code game 3D
+
+Cookie:
+Statefull: web browser applying cookies
+Stateless: android/ios app (not browser on android/ios), game unity, iot devices not applying cookies
 
 https://www.mongodb.com/docs/compass/master/install/
 
-
-
-
-arrProducts=[
-	{name:"iPhone 12 Pro", price:16000000, img:"ip12.png"},
-	{name:"iPhone 13", price:20000000, img:"ip12.png"},
-	{name:"iPhone 14", price:3000000000000, img:"ip12.png"}
-]
-
+mongodbonline: https://cloud.mongodb.com/
+docUsingMongodb: https://mongoosejs.com/docs/models.html
 views/details.ejs
 Name
 Picture
 Price
 
 products
+tranthevink
+p2mGCsZ5b3yCc9d6
 
 
 
