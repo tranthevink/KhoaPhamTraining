@@ -10,7 +10,6 @@ jwt.sign(secretData, privateKey, { expiresIn: 60 * 60 }, function(err, token) {
     setTimeout(() => {
         console.log(token);
         jwt.verify(token, privateKey, function(err, decoded) {
-
             if (err) {
                 console.log(err);
             } else {
@@ -21,6 +20,6 @@ jwt.sign(secretData, privateKey, { expiresIn: 60 * 60 }, function(err, token) {
                 }
             }
         });
-    }, 1)
+    }, 1);
 
 });
