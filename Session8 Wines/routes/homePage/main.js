@@ -14,7 +14,7 @@ module.exports = function(appParam, isEmailValid, config) {
         if (!req.body.Email || !req.body.Password) {
             res.json({ result: 0, message: "Wrong parameters!" })
         } else {
-            var email = req.body.Email.toLowerCase();
+            var email = req.body.Email.trim().toLowerCase();
             var password = req.body.Password;
             //check email template
             if (!isEmailValid(email)) {
@@ -55,6 +55,26 @@ module.exports = function(appParam, isEmailValid, config) {
                     res.json({ result: 0, message: "Check Email existing failed!" })
                 })
             }
+        }
+    });
+    appParam.post("/login", (req, res) => {
+        if (!req.body.Email || !req.body.Password) {
+            res.json({ result: 0, message: "Wrong parameters!" })
+        } else {
+            //check existing email
+            var email = req.body.Email.trim().toLowerCase();
+            var password = req.body.Password;
+            User.findOne({ Email: email })
+                .then((user) => {
+                    if (user != null) {
+                        res.json({ result: 1, message: "Login successfully!" })
+                    } else {
+                        res.json({ result: 0, message: "Email has not been registered!" })
+                    }
+                }).catch((err) => {
+                    res.json({ result: 0, message: "check email throw exception!" });
+                });
+            //check password
         }
     });
 };
