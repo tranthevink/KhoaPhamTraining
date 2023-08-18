@@ -1,6 +1,7 @@
 var User = require("../../models/User");
 var bcrypt = require('bcryptjs');
-
+var jwt = require("jsonwebtoken")
+var Token = require("../../models/Token");
 
 module.exports = function(appParam, isEmailValid, config) {
     appParam.get("/", (req, res) => {
@@ -67,14 +68,45 @@ module.exports = function(appParam, isEmailValid, config) {
             User.findOne({ Email: email })
                 .then((user) => {
                     if (user != null) {
-                        res.json({ result: 1, message: "Login successfully!" })
+                        bcrypt.compare(password, user.Password, function(err, isMatch) {
+                            if (err) {
+                                res.json({ result: 0, message: err })
+                            } else if (!isMatch) {
+                                res.json({ result: 0, message: "Password doesn't match!" })
+                            } else {
+                                user.Password = "Hello";
+                                jwt.sign({
+                                    data: user
+                                }, config.secretKey, { expiresIn: 60 * 60 }, (errJwt, token) => {
+                                    if (errJwt) {
+                                        res.json({ result: 1, message: "Token is invalid!" });
+                                    } else {
+                                        var newToken = new Token({
+                                            Email: email,
+                                            Token: token,
+                                            Status: true,
+                                            RegisterDate: Date.now()
+                                        });
+                                        newToken.save()
+                                            .then(() => {
+                                                res.json({ result: 1, message: "Login successfully!", token: token });
+                                            })
+                                            .catch(() => {
+                                                res.json({ result: 0, message: "Token was saved failed" });
+                                            });
+                                    }
+                                });
+                            }
+                        });
                     } else {
-                        res.json({ result: 0, message: "Email has not been registered!" })
+                        res.json({ result: 0, message: "Email has not been registered!" });
+
                     }
                 }).catch((err) => {
                     res.json({ result: 0, message: "check email throw exception!" });
                 });
             //check password
+
         }
     });
 };
