@@ -1,6 +1,10 @@
 {
     "domain": "http://localhost:3000",
     "dbConnectionString": "mongodb+srv://tranthevink:p2mGCsZ5b3yCc9d6@cluster0.upzqyeq.mongodb.net/Mean2023_01",
-    "secretKey": "@$##@%$$^$%GREY"
+    "secretKey": "@$##@%$$^$%GREY",
+    "validateFormat": {
+        "minPasswordLength": 6
+    },
+    "saltRounds": 10
 
 }
