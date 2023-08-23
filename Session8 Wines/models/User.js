@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     Active: Boolean,
     RegisterDate: Date,
 
-    Socket: String
+    Socket: String,
+    UserType: Number //0 user, 1 Admin
 });
 module.exports = mongoose.model("users", userSchema);

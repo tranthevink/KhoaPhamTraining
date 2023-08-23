@@ -40,7 +40,8 @@ module.exports = function(appParam, isEmailValid, config) {
                                         Password: hash,
                                         Avatar: "avatar.jpg",
                                         RegisterDate: Date.now(),
-                                        Socket: ""
+                                        Socket: "",
+                                        UserType: 0
                                     });
                                     newUser.save().then((data) => {
                                         res.json({ result: 1, message: "Registered successfully!", user: data });
@@ -85,6 +86,7 @@ module.exports = function(appParam, isEmailValid, config) {
                                             Email: email,
                                             Token: token,
                                             Status: true,
+                                            UserType: user.UserType,
                                             RegisterDate: Date.now()
                                         });
                                         newToken.save()
@@ -109,4 +111,116 @@ module.exports = function(appParam, isEmailValid, config) {
 
         }
     });
+    appParam.post("/verify", (req, res) => {
+        if (!req.body.Token) {
+            res.json({ result: 0, message: "Wrong parameters!" })
+        } else {
+            var token = req.body.Token;
+            Token.findOne({ Token: token, Status: true })
+                .then((t) => {
+                    if (t == null) {
+                        res.json({ result: 0, message: "Token has been expired!" })
+                    } else {
+                        // verify a token symmetric
+                        jwt.verify(token, config.secretKey, function(err, decoded) {
+                            if (err) {
+                                res.json({ result: 0, message: err })
+                            } else {
+                                res.json({ result: 1, message: "Token is ok!", data: decoded })
+                            }
+                        });
+                    }
+                })
+                .catch(e => {
+                    res.json({ result: 0, message: "Checking token threw a exception!" })
+                })
+        }
+    });
+
+    appParam.post("/logout", (req, res) => {
+        if (!req.body.Token) {
+            res.json({ result: 0, message: "Wrong parameters!" })
+        } else {
+            var token = req.body.Token;
+            Token.findOne({ Token: token, Status: true })
+                .then((t) => {
+                    if (t == null) {
+                        res.json({ result: 0, message: "Token has been expired!" })
+                    } else {
+                        // verify a token symmetric
+                        Token.findOneAndUpdate({ Token: token }, { Status: false })
+                            .then(() => {
+                                res.json({ result: 1, message: "Logout Successfully!" })
+                            })
+                            .catch(e => {
+                                res.json({ result: 0, message: "Logout Failed!" })
+                            });
+                    }
+                })
+                .catch(e => {
+                    res.json({ result: 0, message: "Checking token threw a exception!" })
+                })
+        }
+    });
+
+    appParam.post("/admin", check, (req, res) => {
+
+    });
+
+    function checkLogined(req, res, next) {
+        if (!req.body.Token) {
+            res.json({ result: 0, message: "Wrong parameters!" })
+        } else {
+            var token = req.body.Token;
+            Token.findOne({ Token: token, Status: true })
+                .then((t) => {
+                    if (t == null) {
+                        res.json({ result: 0, message: "Token has been expired!" })
+                    } else {
+                        // verify a token symmetric
+                        jwt.verify(token, config.secretKey, function(err, decoded) {
+                            if (err) {
+                                res.json({ result: 0, message: err })
+                            } else {
+                                next();
+                            }
+                        });
+                    }
+                })
+                .catch(e => {
+                    res.json({ result: 0, message: "Checking token threw a exception!" })
+                })
+        }
+    }
+
+    function checkAdmin(req, res, next) {
+        if (!req.body.Token) {
+            res.json({ result: 0, message: "Wrong parameters!" })
+        } else {
+            var token = req.body.Token;
+            Token.findOne({ Token: token, Status: true })
+                .then((t) => {
+                    if (t == null) {
+                        res.json({ result: 0, message: "Token has been expired!" })
+                    } else {
+                        // verify a token symmetric
+                        jwt.verify(token, config.secretKey, function(err, decoded) {
+                            if (err) {
+                                res.json({ result: 0, message: err })
+                            } else {
+                                if (decoded.data.UserType === 1)
+                                    next();
+                                else
+                                    res.json({ result: 0, message: "You must be admin to use this feature!" })
+
+                            }
+                        });
+                    }
+                })
+                .catch(e => {
+                    res.json({ result: 0, message: "Checking token threw a exception!" })
+                })
+        }
+    }
+
 };
