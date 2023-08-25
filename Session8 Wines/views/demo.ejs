@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" name="avatar" id="avatar">
+    <button id="btnUpload">Upload</button>
+    <script>
+        $("#btnUpload").click(function() {
+
+            var data = new FormData();
+            jQuery.each(jQuery('#avatar')[0].files, function(i, file) {
+                data.append("avatar", file);
+            });
+
+            jQuery.ajax({
+                url: './uploadFile',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

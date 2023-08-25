@@ -2,10 +2,14 @@ var User = require("../../models/User");
 var bcrypt = require('bcryptjs');
 var jwt = require("jsonwebtoken")
 var Token = require("../../models/Token");
+//multer
+var multer = require('multer');
 
 module.exports = function(appParam, isEmailValid, config) {
     appParam.get("/", (req, res) => {
-        res.send("Hello world");
+        res.render("demo");
+
+
     });
 
     appParam.post("/register", function(req, res) {
@@ -163,9 +167,9 @@ module.exports = function(appParam, isEmailValid, config) {
         }
     });
 
-    appParam.post("/admin", check, (req, res) => {
+    // appParam.post("/admin", check, (req, res) => {
 
-    });
+    // });
 
     function checkLogined(req, res, next) {
         if (!req.body.Token) {
@@ -222,5 +226,46 @@ module.exports = function(appParam, isEmailValid, config) {
                 })
         }
     }
+    //upload file
+
+    var storage = multer.diskStorage({
+        destination: function(req, file, cb) {
+            cb(null, 'public/upload')
+        },
+        filename: function(req, file, cb) {
+            cb(null, Date.now() + "-" + file.originalname)
+        }
+    });
+    var upload = multer({
+        storage: storage,
+        fileFilter: function(req, file, cb) {
+            console.log(file);
+            if (file.mimetype == "image/bmp" ||
+                file.mimetype == "image/png" ||
+                file.mimetype == "image/gif" ||
+                file.mimetype == "image/jpg" ||
+                file.mimetype == "image/jpeg"
+
+            ) {
+                cb(null, true)
+            } else {
+                return cb(new Error('Only image are allowed!'))
+            }
+        }
+    }).single("avatar");
+    appParam.post("/uploadFile", function(req, res) {
+
+        upload(req, res, function(err) {
+            if (err instanceof multer.MulterError) {
+                res.json({ result: 0, message: "A Multer error occurred when uploading." });
+            } else if (err) {
+                res.json({ result: 0, message: "An unknown error occurred when uploading." + err });
+            } else {
+                console.log(req.file);
+                res.json({ result: 1, message: "Upload Successfully.", info: req.file });
+            }
+
+        });
+    });
 
 };
