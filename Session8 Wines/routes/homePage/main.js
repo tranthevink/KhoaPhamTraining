@@ -227,7 +227,10 @@ module.exports = function(appParam, isEmailValid, config) {
         }
     }
     //upload file
-
+    const {
+        v1: uuidv1,
+        v4: uuidv4,
+    } = require('uuid');
     var storage = multer.diskStorage({
         destination: function(req, file, cb) {
             cb(null, 'public/upload')
