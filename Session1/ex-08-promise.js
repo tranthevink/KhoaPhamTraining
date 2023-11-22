@@ -7,10 +7,11 @@ var theNumber3 = function() {
     });
 }
 
-theNumber3().then((x) => {
+theNumber3().then(x => {
     console.log(x + "hehe");
-}).catch((x) => {
+}).catch(x => {
     console.log(x);
+    console.log(test);
 });
 
 // var test = new Promise((resolve, reject) => {

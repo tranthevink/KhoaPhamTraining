@@ -20,8 +20,8 @@ app.get("/register", (req, res) => {
 
 });
 listProducts = [
-    { name: "iPhone 12 Pro", price: 16000000, img: "./iphones/12Pro.jpg" },
-    { name: "iPhone 13", price: 20000000, img: "./iphones/13.jpg" }
+    { name: "iPhone 12 Pro", price: 16000000, img: "../iphones/12Pro.jpg" },
+    { name: "iPhone 13", price: 20000000, img: "../iphones/13.jpg" }
 ]
 app.get("/products", (req, res) => {
     res.render("master", { page: "products", arrProducts: listProducts });

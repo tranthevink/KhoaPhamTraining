@@ -12,7 +12,7 @@ console.log(`Your total is: ${getValue(myArray[randomIndex1]) + getValue(myArray
 function randomIndex() {
     var continueRandom = true;
     while (continueRandom) {
-        var randomIndex = Math.floor(Math.random() * (myArray.length));
+        var randomIndex = Math.floor(Math.random() * myArray.length);
         if (indexGot.includes(randomIndex))
             continueRandom = true;
         else

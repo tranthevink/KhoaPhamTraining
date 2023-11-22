@@ -10,20 +10,20 @@ myFunction();
 async function myFunction() {
     for (var i = 0; i < arrayJob.length; i++) {
         //waiting until this work done
-        await Counting(arrayJob[i].duration, 0, arrayJob[i].job);
+        await counting(arrayJob[i].duration, 0, arrayJob[i].job);
     }
     console.log("What a day!");
 }
 
-function Counting(max, start, action) {
+function counting(max, start, action) {
     return new Promise(resolve => {
         setTimeout(() => {
             if (max > start) {
                 console.log(action + " " + start);
-                //exit the first Counting with recursive call
-                resolve(Counting(max, start + 1, action));
+                //exit the first counting with recursive call
+                resolve(counting(max, start + 1, action));
             } else {
-                //exit last Counting 
+                //exit last counting 
                 resolve();
             }
         }, 1000);

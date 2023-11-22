@@ -6,7 +6,7 @@ var arrayJob = [
     { job: "Reading", duration: 2 }
 ]
 
-recursiveBrowseArray(0);
+recursiveBrowseArray(0).then(x => console.log(x));
 
 function recursiveBrowseArray(startIndex) {
     return new Promise(resolveLevel1 => {
@@ -29,11 +29,10 @@ function recursiveCounting(max, start, action) {
             setTimeout(() => {
                 console.log(action + " " + start);
                 resolve(recursiveCounting(max, start + 1, action));
-            }, 1000);
+            }, 100);
         } else {
-            resolve({ counting: "reached the last element" });
+            resolve({ counting: "reached the max duration" });
         }
-
     });
 }
 

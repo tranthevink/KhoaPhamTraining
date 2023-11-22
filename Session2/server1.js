@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require('body-parser');
-
+const axios = require('axios');
 
 var app = express();
 //open port 3000
@@ -9,7 +9,7 @@ app.listen(3000);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-const axios = require('axios');
+
 
 app.get("/price/:pair", function(req, res) {
     axios.get("https://api.binance.com/api/v3/ticker/price?symbol=" + req.params.pair)

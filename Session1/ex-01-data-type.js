@@ -4,7 +4,7 @@
 
 // dateOfBirth = dateOfBirth * 2; // + - * %
 //myConst = myConst + 1; //throw error
-// console.log(new Date().getFullYear());//2023
+// console.log(new Date().setHours(0, 0, 0, 0)); //2023
 
 // if (new Date().getFullYear() - dateOfBirth >= 18) {
 //     console.log("Is adult.")
@@ -12,12 +12,12 @@
 //     console.log("Is't adult.")
 // }
 
-var myArray = [1, 0, 9, 8];
+// var myArray = [1, 0, 9, 8];
 
 // console.log(myArray.length); //4
 // console.log(myArray[0]); //1
 // console.log(myArray[8]); //undefined
 
-for (var i = 0; i < myArray.length; i++) {
-    console.log(myArray[i]);
-}
+// for (var i = 0; i < myArray.length; i++) {
+//     console.log(myArray[i]);
+// }
